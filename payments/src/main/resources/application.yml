@@ -2,9 +2,9 @@ server:
   port: 8080
 json:
   paths:
-    payments: "classpath:payments.json"
-    products: "classpath:products.json"
-    orders: "classpath:orders.json"
+    payments: "/payments.json"
+    products: "/products.json"
+    orders: "/orders.json"
 spring:
   application:
     name: payments
