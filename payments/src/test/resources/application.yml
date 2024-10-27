@@ -1,0 +1,10 @@
+server:
+  port: 8081
+json:
+  paths:
+    payments: "/payments.json"
+    products: "/products.json"
+    orders: "/orders.json"
+spring:
+  application:
+    name: payments
