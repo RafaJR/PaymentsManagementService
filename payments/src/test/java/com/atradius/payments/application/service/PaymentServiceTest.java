@@ -1,6 +1,7 @@
 package com.atradius.payments.application.service;
 
 import com.atradius.payments.infrastructure.adapter.json.JsonDataLoader;
+import com.atradius.payments.infrastructure.dto.DebtDTO;
 import com.atradius.payments.infrastructure.dto.TotalPaidDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,48 @@ class PaymentServiceTest {
                 .findFirst();
 
         assertEquals(expectedTotalPaid, dto.get().getTotalPaid());
+    }
+
+    /**
+     * Tests the calculateUsersDebt method of the PaymentService class.
+     * This unit test verifies that the calculateUsersDebt method correctly calculates
+     * the debt by user and returns an expected list of DebtDTO objects.
+     *
+     * It performs the following checks:
+     * 1. Verifies the size of the result list.
+     * 2. Asserts the debt value for each user against the expected value.
+     */
+    @Test
+    void calculateUsersDebtTest1() {
+        // Calling the service to retrieve real data
+        List<DebtDTO> result = paymentService.calculateUsersDebt();
+
+        // First, assert the result size
+        assertEquals(8, result.size());
+
+        // Then, assert the expected debt value for each user using the 'assertUserDebt' method
+        assertUserDebt(result, "nick", -106.5);
+        assertUserDebt(result, "zoey", -56.0);
+        assertUserDebt(result, "rochelle", -42.75);
+        assertUserDebt(result, "bill", -29.25);
+        assertUserDebt(result, "louis", 37.5);
+        assertUserDebt(result, "francis", -66.5);
+        assertUserDebt(result, "ellis", 41.75);
+        assertUserDebt(result, "coach", 4.0);
+    }
+
+    /**
+     * Asserts that the debt amount for a specific user matches the expected value.
+     *
+     * @param result The list of DebtDTO objects representing the debt by users.
+     * @param user The username for which the debt amount is to be asserted.
+     * @param expectedDebt The expected debt amount for the specified user.
+     */
+    private void assertUserDebt(List<DebtDTO> result, String user, double expectedDebt) {
+        Optional<DebtDTO> dto = result.stream()
+                .filter(debtDTO -> debtDTO.getUser().equals(user))
+                .findFirst();
+
+        assertEquals(expectedDebt, dto.get().getDebt());
     }
 }
