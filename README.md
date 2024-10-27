@@ -30,13 +30,13 @@ To build and run this microservice, you will need the following installed on you
 
 1. Clone the repository:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/RafaJR/PaymentsManagementService.git
     cd <repository-directory>
     ```
 
 2. Build the project using Maven:
     ```bash
-    mvn clean package
+    mvn clean install
     ```
 
 3. Navigate to the `target` directory and run the packaged JAR file:
@@ -78,10 +78,13 @@ mvn test
 
 You can also run the tests directly from the code using your preferred IDE. Most IDEs such as IntelliJ IDEA or Eclipse allow you to right-click on the test class or method and select "Run" to execute the tests.
 
-For example, to run the tests for the `PaymentControllerTest` class in IntelliJ IDEA:
-1. Navigate to `src/test/java/com/yourpackage/PaymentControllerTest.java`.
+For example, to run the tests for the `PaymentServiceTest` class in IntelliJ IDEA:
+1. Navigate to `com/atradius/payments/application/service/PaymentServiceTest.java`.
 2. Right-click on the class name or the specific test method you want to run.
 3. Select `Run 'PaymentControllerTest'` or `Run 'testMethodName'`.
+
+To run the integration tests, this is the class:
+`com/atradius/payments/api/controller/PaymentControllerTest.java`
 
 This will initiate the test runner and execute the specified tests.
 
